@@ -140,8 +140,8 @@ public class SelectionSortTest {
 ----
 [%hardbreaks]
 Output of the test case:
-`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]
-Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
+`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]`
+`Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
 
 * **Analysis**: Even if the array is already sorted, it ends up scanning all element for lowest element which requires (n-1) comparisons for all n elements. Finding next lowest element, requires (n-2) comparisons and so on...
 for (n − 1) + (n − 2) + ... + 2 + 1 = n(n - 1) / 2 ∈ Θ(n^2^) comparisons.

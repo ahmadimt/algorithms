@@ -67,8 +67,8 @@ public class InsertionSortTest {
 ----
 [%hardbreaks]
 Output of the test case:
-`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]
-Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
+`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]`
+`Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
 
 * *Best Case*: When the input array is already sorted. In this case, swapping does take place and time complexity will be O(n).
 * *Worst Case*: When the input array is sorted in reverse order. Here, there will be n comparison for n shifting which makes it O(n^2^) in time complexity.

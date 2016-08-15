@@ -1,0 +1,169 @@
+= Sorting Algorithms in Java
+:source-highlighter: pygments
+:toc: left
+:toclevels: 4
+Imteyaz Ahmad <ahmad.imt07@gmail.com>
+
+== About the Author
+I usually write on Java, Spring, Elasticsearch.You can contact me at {email}.
+
+== What's it ?
+[%hardbreaks]
+* A sorting algorithm is an algorithm that puts elements of a list in a certain order.
+* The order can be numeric order or lexicographical order.
+* The output of a sorting algorithm must satisfy the following conditions:
+  1. The output is in nondecreasing order
+  2. The output is a reordering of the input.
+
+== Popular Sorting algorithms
+=== Simple sorts
+==== _Insertion sort_
+* It is easier to implement.
+* Efficient of small set of data, but NOT suitable for large data set.
+* It is *stable*, as it preserves the relative order of elements with equal keys.
+* In-place as it requires only a constant amount O(1) of additional memory space.
+
+Java code for implementing `Insertion Sort`:
+
+[source,java,linenums]
+----
+package com.imti.algo.simple;
+
+/**
+ * Created by imti on 15/8/16.
+ */
+public class InsertionSort {
+    public static void doSorting(int[] inputDataSet) {
+        for (int i = 1; i < inputDataSet.length; i++) {
+            int j = i;
+            while (j > 0 && inputDataSet[j] < inputDataSet[j - 1]) {
+                int tmp = inputDataSet[j - 1];
+                inputDataSet[j - 1] = inputDataSet[j];
+                inputDataSet[j] = tmp;
+                j--;
+            }
+        }
+    }
+}
+----
+Here is a test class:
+[source,java,linenums]
+----
+import com.imti.algo.simple.InsertionSort;
+import org.junit.Test;
+import java.util.Arrays;
+/**
+ * Created by imti on 15/8/16.
+ */
+public class InsertionSortTest {
+    @Test
+    public void testSorting() {
+        int[] inputDataSet = {3,21,14,90,32, 23, 45, 87, 92, 31, 19};
+        System.out.println("Input Data Sets: " + Arrays.toString(inputDataSet));
+        InsertionSort.doSorting(inputDataSet);
+        System.out.println("Output Data Sets: " + Arrays.toString(inputDataSet));
+    }
+}
+----
+[%hardbreaks]
+Output of the test case:
+`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]
+Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
+
+* *Best Case*: When the input array is already sorted. In this case, swapping does take place and time complexity will be O(n).
+* *Worst Case*: When the input array is sorted in reverse order. Here, there will be n comparison for n shifting which makes it O(n^2^) in time complexity.
+* *Average Case*: It is again with time complexity O(n^2^) like the worst case.
+
+==== _Selection sort_
+
+* It sort an unordered array by repeatedly finding the minimum of the elements assuming an ascending order is required.
+* It then puts the minimum element at the begining.
+* It does it by maintaining two sub arrays:
+  ** The sub array which is already sorted and,
+  ** The other with unsorted elements.
+
+Java code for implementing `Selection Sort`:
+
+[source,java,linenums]
+----
+package com.imti.algo.simple;
+
+/**
+ * Created by imti on 15/8/16.
+ */
+public class SelectionSort {
+
+    public static void doSorting(int[] inputDataSet) {
+
+        //This outer loop places the smallest element found by inner loop at its position
+        for (int i = 0; i < inputDataSet.length - 1; i++) {
+            int minIdx = i;
+            //This inner loop finds the next smallest element
+            for (int j = i + 1; j < inputDataSet.length; j++) {
+                if (inputDataSet[j] < inputDataSet[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            int tmp = inputDataSet[minIdx];
+            inputDataSet[minIdx] = inputDataSet[i];
+            inputDataSet[i] = tmp;
+        }
+    }
+
+}
+----
+
+In the above code, there are two loops, the inner loops find the next smallest number, while the outer loop places it to its appropriate position.
+
+Here is a test case for `Selection sort`:
+[source,java,linenums]
+----
+import com.imti.algo.simple.SelectionSort;
+import org.junit.Test;
+
+import java.util.Arrays;
+
+/**
+ * Created by imti on 15/8/16.
+ */
+public class SelectionSortTest {
+
+    @Test
+    public void testSorting() {
+        int[] inputDataSet = {3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19};
+        System.out.println("Input Data Sets: " + Arrays.toString(inputDataSet));
+        SelectionSort.doSorting(inputDataSet);
+        System.out.println("Output Data Sets: " + Arrays.toString(inputDataSet));
+    }
+
+}
+----
+[%hardbreaks]
+Output of the test case:
+`Input Data Sets: [3, 21, 14, 90, 32, 23, 45, 87, 92, 31, 19]
+Output Data Sets: [3, 14, 19, 21, 23, 31, 32, 45, 87, 90, 92]`
+
+* **Analysis**: Even if the array is already sorted, it ends up scanning all element for lowest element which requires (n-1) comparisons for all n elements. Finding next lowest element, requires (n-2) comparisons and so on...
+for (n − 1) + (n − 2) + ... + 2 + 1 = n(n - 1) / 2 ∈ Θ(n^2^) comparisons.
+
+** Best Case: O(n^2^)
+** Worst Case: O(n^2^)
+** Average Case: O(n^2^)
+
+
+=== Efficient sorts
+==== _Merge sort_
+==== _Heap sort_
+==== _Quick sort_
+=== Bubble sort and variants
+==== _Bubble sort_
+==== _Shell sort_
+==== _Comb sort_
+=== Distribution sort
+==== _Counting sort_
+==== _Bucket sort_
+==== _Radix sort_
+
+== References
+1. https://en.wikipedia.org/wiki/Algorithm
+2. https://en.wikipedia.org/wiki/Sorting_algorithm#Simple_sorts
